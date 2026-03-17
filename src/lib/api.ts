@@ -9,7 +9,7 @@ export const authApi = {
       password,
       options: {
         data: { role, first_name: firstName, last_name: lastName, company_name: companyName },
-        emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback`,
+        emailRedirectTo: `${typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000'}/auth/callback`,
       },
     });
     if (error) throw error;
