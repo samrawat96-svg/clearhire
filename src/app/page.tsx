@@ -15,7 +15,7 @@ export default function Home() {
           Hiring, Demystified.
         </p>
         
-        <Link href="/auth/login" className="w-full bg-gradient-to-br from-[#00C853] to-[#00897B] text-[#0A192F] font-bold text-lg py-4 rounded-2xl mb-4 hover:shadow-[0_0_20px_rgba(0,200,83,0.4)] transition-all flex items-center justify-center">
+        <Link href="/auth/register" className="w-full bg-gradient-to-br from-[#00C853] to-[#00897B] text-[#0A192F] font-bold text-lg py-4 rounded-2xl mb-4 hover:shadow-[0_0_20px_rgba(0,200,83,0.4)] transition-all flex items-center justify-center">
           Get Started Free
         </Link>
         <div className="text-gray-500 text-sm">

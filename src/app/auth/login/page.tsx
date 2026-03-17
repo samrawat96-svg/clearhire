@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { authApi } from '@/lib/api';
 import toast from 'react-hot-toast';
@@ -22,11 +22,14 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-[#060f1e] text-white flex flex-col max-w-[430px] mx-auto p-6 shadow-xl relative">
-      <div className="flex-1 flex flex-col justify-center">
+      <div className="flex-1 flex flex-col justify-center items-center text-center">
+        <div className="w-16 h-16 bg-gradient-to-br from-[#00C853] to-[#00897B] rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-[0_0_20px_rgba(0,200,83,0.3)]">
+          ✦
+        </div>
         <h1 className="text-3xl font-bold mb-2">Welcome Back</h1>
         <p className="text-gray-400 mb-8">Sign in to your ClearHire account</p>
         
-        <form onSubmit={handleLogin} className="flex flex-col gap-4">
+        <form onSubmit={handleLogin} className="flex flex-col gap-4 w-full">
           <div>
             <input 
               className="w-full bg-[#112240] rounded-xl px-4 py-3 outline-none border border-gray-800 focus:border-[#00C853] transition" 

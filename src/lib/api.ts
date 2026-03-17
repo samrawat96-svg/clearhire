@@ -180,7 +180,7 @@ export const applicationsApi = {
     if (error) throw error;
 
     // Increment application count
-    await supabase.rpc('increment_application_count', { job_id: jobId }).catch(() => {});
+    try { await supabase.rpc('increment_application_count', { job_id: jobId }); } catch(err) {}
     return data;
   },
 

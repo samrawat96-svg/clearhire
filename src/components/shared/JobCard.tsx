@@ -1,21 +1,27 @@
 'use client';
 import Link from 'next/link';
 import { MapPin, Clock, DollarSign, Bookmark } from 'lucide-react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { usersApi } from '@/lib/api';
 import toast from 'react-hot-toast';
+import { useAuthStore } from '@/store/authStore';
 
 interface Props { job: any; showMatchScore?: boolean; matchScore?: number; }
 
 export function JobCard({ job, showMatchScore, matchScore }: Props) {
   const [saved, setSaved] = useState(false);
+  const { user } = useAuthStore();
 
   const handleSave = async (e: React.MouseEvent) => {
     e.preventDefault();
+    if (!user) {
+      toast.error('Please login to save jobs');
+      return;
+    }
     try {
-      if (saved) { await usersApi.unsaveJob(job.id); setSaved(false); toast('Removed from saved'); }
-      else { await usersApi.saveJob(job.id); setSaved(true); toast.success('Job saved!'); }
-    } catch { toast.error('Please login to save jobs'); }
+      if (saved) { await usersApi.unsaveJob(user.id, job.id); setSaved(false); toast('Removed from saved'); }
+      else { await usersApi.saveJob(user.id, job.id); setSaved(true); toast.success('Job saved!'); }
+    } catch { toast.error('Failed to update saved jobs'); }
   };
 
   const salary = job.salaryMin && job.salaryMax
