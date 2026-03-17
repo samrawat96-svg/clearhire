@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --navy: #0A192F;
+  --green: #00C853;
+  --yellow: #FFD600;
+  --red: #FF3D00;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; -webkit-font-smoothing: antialiased; }
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 3px; }
+
+.skeleton {
+  background: linear-gradient(90deg, #F3F4F6 25%, #E9EAEB 50%, #F3F4F6 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.status-applied    { @apply bg-gray-100 text-gray-500; }
+.status-viewed     { @apply bg-blue-50 text-blue-600; }
+.status-shortlisted { @apply bg-orange-50 text-orange-600; }
+.status-interview  { @apply bg-yellow-50 text-yellow-600; }
+.status-offer      { @apply bg-green-50 text-green-700; }
+.status-rejected   { @apply bg-red-50 text-red-500; }
+.status-withdrawn  { @apply bg-gray-50 text-gray-400; }

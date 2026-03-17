@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>ClearHire ATS – Full Client Demo v2.0</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#060f1e;font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;}
+input,button,select,textarea{font-family:'DM Sans',sans-serif;}
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,0.3);}
+input:focus,textarea:focus{outline:none;}
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px;}
+input[type=range]{-webkit-appearance:none;height:5px;background:rgba(255,255,255,0.1);border-radius:3px;width:100%;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:#00C853;cursor:pointer;}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+@keyframes glow{0%,100%{box-shadow:0 0 20px rgba(0,200,83,.4)}50%{box-shadow:0 0 40px rgba(0,200,83,.8)}}
+@keyframes shimmer{0%{background-position:-400px 0}100%{background-position:400px 0}}
+.screen{animation:fadeIn 0.3s ease forwards;}
+.desk-screen{animation:fadeIn 0.25s ease forwards;}
+.hover-lift:hover{transform:translateY(-2px);transition:transform 0.2s;}
+.btn-primary:hover{opacity:0.9;transform:translateY(-1px);}
+.btn-primary:active{transform:translateY(0);}
+.skel{background:linear-gradient(90deg,rgba(255,255,255,.04) 25%,rgba(255,255,255,.1) 50%,rgba(255,255,255,.04) 75%);background-size:400px 100%;animation:shimmer 1.5s infinite;border-radius:8px;}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="api.js"></script>
+<script type="text/babel" src="app.js"></script>
+</body>
+</html>
