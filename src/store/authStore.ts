@@ -56,10 +56,9 @@ export const useAuthStore = create<AuthState>()(
             role: 'CANDIDATE',
           }).select().single();
           
-          await supabase.from('candidate_profiles')
+          const { error: cpError } = await supabase.from('candidate_profiles')
             .upsert({ user_id: authUser.id })
-            .select().single()
-            .catch(() => {});
+            .select().single();
             
           finalProfile = newProfile;
         }
