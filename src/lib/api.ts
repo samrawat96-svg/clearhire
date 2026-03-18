@@ -63,6 +63,20 @@ export const authApi = {
     const { data: profile } = await supabase.from('profiles').select('*').eq('id', user.id).single();
     return { ...user, profile };
   },
+
+  async resetPassword(email: string) {
+    const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000'}/auth/update-password`,
+    });
+    if (error) throw error;
+    return data;
+  },
+
+  async updatePassword(password: string) {
+    const { data, error } = await supabase.auth.updateUser({ password });
+    if (error) throw error;
+    return data;
+  },
 };
 
 // ─── JOBS ──────────────────────────────────────────────────────

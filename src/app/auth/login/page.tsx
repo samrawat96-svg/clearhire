@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { authApi } from '@/lib/api';
 import toast from 'react-hot-toast';
 
@@ -49,7 +50,7 @@ export default function Login() {
               required />
           </div>
           <div className="text-right">
-            <span className="text-[#00C853] text-sm cursor-pointer hover:underline">Forgot password?</span>
+            <Link href="/auth/forgot-password" className="text-[#00C853] text-sm cursor-pointer hover:underline">Forgot password?</Link>
           </div>
           <button type="submit" className="w-full bg-[#00C853] text-navy font-bold py-3 mt-4 rounded-xl hover:bg-[#00e676] transition-all">
             Log In
