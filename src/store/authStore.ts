@@ -46,16 +46,34 @@ export const useAuthStore = create<AuthState>()(
         const { data: profile } = await supabase
           .from('profiles').select('*').eq('id', authUser.id).single();
 
-        if (profile) {
+        let finalProfile = profile;
+        
+        // Auto-heal missing profile if the user account exists but database rows don't
+        if (!finalProfile && authUser) {
+          const { data: newProfile } = await supabase.from('profiles').upsert({
+            id: authUser.id,
+            email: authUser.email!,
+            role: 'CANDIDATE',
+          }).select().single();
+          
+          await supabase.from('candidate_profiles')
+            .upsert({ user_id: authUser.id })
+            .select().single()
+            .catch(() => {});
+            
+          finalProfile = newProfile;
+        }
+
+        if (finalProfile) {
           set({
             user: {
               id: authUser.id,
               email: authUser.email!,
-              role: profile.role as UserRole,
-              first_name: profile.first_name,
-              last_name: profile.last_name,
-              avatar_url: profile.avatar_url,
-              is_verified: profile.is_verified,
+              role: finalProfile.role as UserRole,
+              first_name: finalProfile.first_name,
+              last_name: finalProfile.last_name,
+              avatar_url: finalProfile.avatar_url,
+              is_verified: finalProfile.is_verified,
             },
             loading: false,
           });
